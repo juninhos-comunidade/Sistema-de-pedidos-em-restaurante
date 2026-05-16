@@ -107,10 +107,11 @@ Um projeto completo só ganha vida com uma equipe sintonizada. Conheça as mente
 
 | Avatar | Membro | Função / Especialidade | GitHub |
 | :---: | :--- | :--- | :--- |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Nome do Integrante 1] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Nome do Integrante 2] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Nome do Integrante 3] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Nome do Integrante 4] | Pendente | ... |
+| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Vinicius Gabriel Monteiro] | Pendente | ... |
+| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Alice] | Pendente | ... |
+| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Edimilson Miranda] | Pendente | ... |
+| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Lucas Carvalho] | Pendente | ... |
+| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Alícia Maia] | Pendente | ... |
 
 ---
 
