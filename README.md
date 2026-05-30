@@ -1,131 +1,423 @@
-<h1 align="center">Sistema de Pedidos em Restauranes</h1>
+# Sistema de Pedidos em Restaurantes
 
 <p align="center">
   <img src="https://img.shields.io/badge/Comunidade-Juninhos-7B2CBF?style=for-the-badge&logo=discord&logoColor=white" alt="Juninhos Community" />
-  <img src="https://img.shields.io/badge/Status-[Inserir%20Status]-orange?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Status-EM%20ANDAMENTO-yellow?style=for-the-badge" alt="Status" />
 </p>
 
 ---
 
 ## 📝 Sobre o Projeto
 
-Solução digital para automação de pedidos, agilizando a comunicação entre a equipe de atendimento e a cozinha.
+O Sistema de Pedidos em Restaurantes é uma solução digital desenvolvida para automatizar o fluxo de atendimento em estabelecimentos gastronômicos, facilitando a comunicação entre recepção, garçons, cozinha e administração.
 
-Este projeto está sendo desenvolvido de forma 100% colaborativa dentro do ecossistema da **Comunidade Juninhos**. Nosso objetivo primordial é aplicar conceitos modernos de engenharia de software para entregar uma solução robusta, escalável e com impacto real.
+O projeto está sendo desenvolvido de forma colaborativa pelos membros da Comunidade Juninhos com foco na aplicação de boas práticas de arquitetura de software, desenvolvimento web, mobile, APIs REST, autenticação e integração entre sistemas.
 
-> 💡 **Nota do Squad:** Este README serve como um documento vivo. Ele será atualizado continuamente conforme novas funcionalidades forem integradas nas sprints de 30 dias.
+---
+
+## 🎯 Objetivo
+
+Centralizar e otimizar o gerenciamento do restaurante através de uma plataforma composta por:
+
+* Frontend Web para administração, recepção e cozinha;
+* Aplicativo Android para garçons;
+* APIs independentes para autenticação e gerenciamento operacional;
+* Banco de dados PostgreSQL executado em containers Docker.
 
 ---
 
 ## 🛠️ Stack Tecnológica
 
-O projeto foi estruturado seguindo os conceitos de **modularização**, alta coesão e baixo acoplamento:
+### Frontend
 
-* **Frontend:** ...
-* **Backend:** ...
-* **Banco de Dados:** ...
-* **Infraestrutura:** ...
+* Angular
+
+### Mobile
+
+* Kotlin
+* Jetpack Compose
+* Retrofit
+
+### Backend
+
+* Node.js
+* PHP
+
+### Banco de Dados
+
+* PostgreSQL
+
+### Infraestrutura
+
+* Docker
+* Docker Compose
+
+### Qualidade
+
+* Cypress
+* Postman
+* Insomnia
+
+---
+
+## 🏗️ Arquitetura da Solução
+
+```text
+Frontend Angular
+        │
+        ▼
+ ┌─────────────┐
+ │ Auth API    │ (PHP)
+ └─────────────┘
+        │
+        ▼
+ ┌─────────────┐
+ │ Restaurante │ (Node.js)
+ │ API         │
+ └─────────────┘
+        │
+        ▼
+ PostgreSQL
+```
+
+```text
+Aplicativo Kotlin
+        │
+        ├── Auth API (PHP)
+        │
+        └── Restaurante API (Node.js)
+```
+
+---
+
+## 👤 Perfis de Usuário
+
+### Admin
+
+Responsável por:
+
+* Visualizar dashboard gerencial;
+* Consultar faturamento diário;
+* Consultar pratos mais vendidos;
+* Acompanhar indicadores operacionais.
+
+### Recepção
+
+Responsável por:
+
+* Consultar mesas disponíveis;
+* Consultar mesas ocupadas;
+* Consultar mesas aguardando pagamento;
+* Acompanhar status geral das mesas.
+
+### Cozinha
+
+Responsável por:
+
+* Visualizar pedidos recebidos;
+* Atualizar andamento dos pedidos;
+* Gerenciar cardápio;
+* Cadastrar, editar e remover produtos.
+
+### Garçom
+
+Responsável por:
+
+* Abrir pedidos;
+* Editar pedidos;
+* Cancelar pedidos;
+* Alterar status das mesas;
+* Finalizar atendimento.
 
 ---
 
 ## 📌 Funcionalidades Principais
 
-Aqui está o mapeamento de recursos que estão sendo construídos ou planejados para o projeto:
+* [ ] 🔐 Autenticação de usuários com controle de acesso por perfil (Admin, Recepção, Cozinha e Garçom).
 
-- [ ] 🔐 **Funcionalidade 1:** [Breve descrição do recurso ou módulo]
-- [ ] 👥 **Funcionalidade 2:** [Breve descrição do recurso ou módulo]
-- [ ] ⚙️ **Funcionalidade 3:** [Breve descrição do recurso ou módulo]
-- [ ] 📊 **Funcionalidade 4:** [Breve descrição do recurso ou módulo]
+* [ ] 🍽️ Gestão operacional do restaurante através da API Node.js.
+
+* [ ] 🖥️ Frontend Angular para administração, recepção e cozinha.
+
+* [ ] 📱 Aplicativo Android em Kotlin para operação dos garçons.
+
+---
+
+## 📊 Dashboard Administrativo
+
+O painel administrativo deverá apresentar:
+
+* Total faturado no dia;
+* Quantidade de pedidos realizados;
+* Quantidade de mesas ocupadas;
+* Pratos mais vendidos.
+
+---
+
+## 🧱 Entidades Principais
+
+### Auth API (PHP)
+
+#### Usuário
+
+```text
+Id
+Nome
+Email
+Senha
+Perfil
+DataCriacao
+```
+
+#### Perfil
+
+```text
+ADMIN
+RECEPCAO
+COZINHA
+GARCOM
+```
+
+---
+
+### Restaurante API (Node.js)
+
+#### Mesa
+
+```text
+Id
+Numero
+Status
+```
+
+#### Categoria
+
+```text
+Id
+Nome
+```
+
+#### Produto
+
+```text
+Id
+Nome
+Descricao
+Preco
+CategoriaId
+```
+
+#### Pedido
+
+```text
+Id
+MesaId
+Status
+ValorTotal
+DataCriacao
+```
+
+#### ItemPedido
+
+```text
+Id
+PedidoId
+ProdutoId
+Quantidade
+ValorUnitario
+```
+
+---
+
+## 🚦 Status das Mesas
+
+```text
+DISPONIVEL
+OCUPADA
+AGUARDANDO_PAGAMENTO
+FINALIZADA
+```
+
+---
+
+## 🚦 Status dos Pedidos
+
+```text
+ABERTO
+EM_PREPARO
+SERVIDO
+PAGO
+CANCELADO
+```
+
+### Fluxo Principal
+
+```text
+ABERTO
+    ↓
+EM_PREPARO
+    ↓
+SERVIDO
+    ↓
+PAGO
+```
+
+### Fluxo de Cancelamento
+
+```text
+ABERTO
+    ↓
+CANCELADO
+```
 
 ---
 
 ## ⚙️ Como Executar o Projeto Localmente
 
-### 📋 Pré-requisitos
+### Pré-requisitos
 
-Antes de começar, você vai precisar ter instalado em sua máquina:
-* **Ambiente de Execução / Linguagem:** ...
-* **Controle de Versão:** ...
-* **Gerenciador de Pacotes:** ...
+* Git
+* Docker
+* Docker Compose
+* Node.js
+* PHP
+* Android Studio
+* Angular CLI
 
-### 🚀 Passos para Instalação
+### Clone do Projeto
 
-1. Clone o repositório oficial dentro da organização Juninhos:
-   ```bash
-   git clone [URL-DO-REPOSITORIO-AQUI]
-   ```
+```bash
+git clone https://github.com/juninhos-comunidade/Sistema-de-pedidos-em-restaurante.git
+```
 
-2. Acesse a pasta do projeto:
-   ```bash
-   cd [NOME-DA-PASTA-DO-PROJETO]
-   ```
+```bash
+cd Sistema-de-pedidos-em-restaurante
+```
 
-3. Instale todas as dependências necessárias:
-   ```bash
-   ...
-   ```
+### Inicializar Infraestrutura
 
-4. Configure as variáveis de ambiente:
-   * Crie um arquivo `.env` na raiz do projeto seguindo o modelo do `.env.example`.
+```bash
+docker compose up -d
+```
 
-5. Inicie o servidor de desenvolvimento:
-   ```bash
-   ...
-   ```
+### Executar Frontend
+
+```bash
+cd frontend
+npm install
+ng serve
+```
+
+### Executar API Node
+
+```bash
+cd api-restaurante
+npm install
+npm run dev
+```
+
+### Executar API PHP
+
+```bash
+cd api-auth
+composer install
+php artisan serve
+```
+
+### Executar Aplicativo Android
+
+Abrir o projeto Android Studio e executar em dispositivo físico ou emulador.
 
 ---
 
-## 🌿 Diretrizes do Git Flow (Guia de Sobrevivência)
+## 🌿 Git Flow
 
-Para manter o código limpo e organizado para todo o time, seguimos rigorosamente estas regras de contribuição:
+### Branches
 
-### 1. Nomenclatura de Branches
-Sempre crie uma ramificação específica para a sua tarefa a partir da branch principal:
-* `feature/nome-da-funcionalidade`
-* `fix/correcao-de-bug`
-* `docs/atualizacao-readme`
-
-```bash
-git checkout -b feature/minha-tarefa
+```text
+main
+feature/*
+fix/*
+docs/*
 ```
 
-### 2. Padrão de Commits
-Os commits devem ser claros, em português e indicar a intenção da alteração:
-* `feat: [breve descrição do novo recurso adicionado]`
-* `fix: [breve descrição do bug corrigido]`
-* `style: [breve descrição da alteração estética ou de formatação]`
+Exemplos:
 
-### 3. Revisão de Código (Pull Requests)
-* Nunca faça o merge direto na branch principal.
-* Abra um **Pull Request (PR)** e solicite a revisão de pelo menos um outro membro do squad antes de aplicar as alterações.
+```bash
+git checkout -b feature/pedidos
+```
+
+```bash
+git checkout -b feature/dashboard
+```
+
+```bash
+git checkout -b fix/correcao-login
+```
+
+---
+
+## 📝 Convenção de Commits
+
+```text
+feat: nova funcionalidade
+fix: correção de bug
+docs: documentação
+style: ajustes visuais
+refactor: refatoração
+test: testes
+chore: tarefas de manutenção
+```
+
+Exemplos:
+
+```bash
+feat: adiciona CRUD de pedidos
+```
+
+```bash
+fix: corrige autenticação JWT
+```
+
+```bash
+docs: atualiza README
+```
+
+---
+
+## 🚀 Fluxo de Demonstração
+
+1. Recepção visualiza mesas disponíveis.
+2. Garçom realiza login no aplicativo.
+3. Garçom seleciona uma mesa.
+4. Garçom cria um pedido.
+5. Pedido é enviado para a cozinha.
+6. Cozinha altera status para EM_PREPARO.
+7. Cozinha altera status para SERVIDO.
+8. Garçom finaliza o atendimento.
+9. Pedido é marcado como PAGO.
+10. Dashboard administrativo é atualizado automaticamente.
 
 ---
 
 ## 👥 Nosso Squad
 
-Um projeto completo só ganha vida com uma equipe sintonizada. Conheça as mentes por trás do desenvolvimento:
-
-| Avatar | Membro | Função / Especialidade | GitHub |
-| :---: | :--- | :--- | :--- |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Vinicius Gabriel Monteiro] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Alice] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Edimilson Miranda] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Lucas Carvalho] | Pendente | ... |
-| <img src="https://github.com/github.png" width="40" style="border-radius:50%"/> | [Alícia Maia] | Pendente | ... |
+|                         Avatar                        | Membro       | Função / Especialidade                    | GitHub                                                     |
+| :---------------------------------------------------: | :----------- | :---------------------------------------- | :--------------------------------------------------------- |
+| <img src="https://github.com/github.png" width="40"/> | Miguel Rocha | Tech Lead e Desenvolvedor Frontend/Mobile | [@rocha-miguel](https://github.com/rocha-miguel)           |
+| <img src="https://github.com/github.png" width="40"/> | Ryan         | Desenvolvedor Backend Node.js             | [@MrRyan04](https://github.com/MrRyan04)                   |
+| <img src="https://github.com/github.png" width="40"/> | Edimilson    | Desenvolvedor Backend                     | [@Edimilson-Miranda](https://github.com/Edimilson-Miranda) |
+| <img src="https://github.com/github.png" width="40"/> | Thiago       | Desenvolvedor Backend PHP                 | [@ThiagoRosaPaiva](https://github.com/ThiagoRosaPaiva)     |
+| <img src="https://github.com/github.png" width="40"/> | Alícia       | Analista de QA                            | [@Ali-Maia](https://github.com/Ali-Maia)                   |
 
 ---
 
 ## ⚖️ Licença
 
-Este projeto é de uso exclusivo e educacional dos membros vinculados à **Juninhos Community**.
+Projeto desenvolvido exclusivamente para fins educacionais e colaborativos dentro da Comunidade Juninhos.
 
 ---
 
-## 🤝 Apoio e Organização
+## 🤝 Comunidade Juninhos
 
-Este projeto é desenvolvido e mantido pelos membros da **Juninhos Community**.
-Se precisar de suporte técnico, mentoria de deploy ou dúvidas sobre infraestrutura, use os canais oficiais no Discord:
-* 💬 `#suporte`
-* 💬 `#geral`
-
-**Bora transformar ideias em código! [++]**
+Projeto desenvolvido pelos membros da Comunidade Juninhos com foco em aprendizado, colaboração e evolução profissional através de experiências práticas de desenvolvimento de software.
