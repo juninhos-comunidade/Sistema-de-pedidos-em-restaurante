@@ -167,6 +167,7 @@ Email
 Senha
 Perfil
 DataCriacao
+StatusUsuario
 ```
 
 #### Perfil
@@ -176,6 +177,13 @@ ADMIN
 RECEPCAO
 COZINHA
 GARCOM
+```
+
+#### StatusUsuario
+
+```text
+ATIVO
+INATIVO
 ```
 
 ---
